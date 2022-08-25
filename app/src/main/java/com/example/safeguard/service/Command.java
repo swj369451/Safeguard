@@ -1,4 +1,4 @@
-package com.example.safeguard.SystemControl;
+package com.example.safeguard.service;
 
 import android.util.Log;
 

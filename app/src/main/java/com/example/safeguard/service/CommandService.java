@@ -2,17 +2,12 @@ package com.example.safeguard.service;
 
 import android.app.Service;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.safeguard.MainActivity;
-import com.example.safeguard.SystemControl.Command;
-
-import java.io.File;
 import java.io.IOException;
 import java.net.ConnectException;
 import java.net.InetSocketAddress;

@@ -12,6 +12,7 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.safeguard.AlarmManager.MyAlarmManager;
 import com.example.safeguard.broadcast.AlarmReceiver;
 import com.example.safeguard.service.CommandService;
 
@@ -47,16 +48,7 @@ public class MainActivity extends AppCompatActivity {
         startService(intent);
 
 
-        /* Setting the alarm here */
-
-
-        Intent alarmIntent = new Intent(this, AlarmReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, 0);
-
-        AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        int interval = 2000;
-        manager.set(AlarmManager.RTC_WAKEUP, interval, pendingIntent);
-        Toast.makeText(this, "Alarm Set", Toast.LENGTH_SHORT).show();
+        MyAlarmManager.alarm(this);
 
     }
 

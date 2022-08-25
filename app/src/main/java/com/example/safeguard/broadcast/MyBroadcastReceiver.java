@@ -10,6 +10,7 @@ import android.os.StatFs;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.safeguard.AlarmManager.MyAlarmManager;
 import com.example.safeguard.MainActivity;
 import com.example.safeguard.service.CommandService;
 
@@ -27,22 +28,24 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
             Log.e(TAG, "自重启");
             Toast.makeText(context, "自重启", Toast.LENGTH_SHORT).show();
             intent = new Intent(context, MainActivity.class);
-            //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); 非常重要，如果缺少的话，程序将在启动时报错
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             //自启动APP（Activity）
             context.startActivity(intent);
 
+            //自启命令服务
+            Intent CommandService = new Intent(context, CommandService.class);
+            context.startService(CommandService);
 
-            /* Setting the alarm here */
-            AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-            int interval = 5000;
-
-            Intent alarmIntent = new Intent(context, AlarmReceiver.class);
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, alarmIntent, 0);
-
-            manager.set(AlarmManager.RTC_WAKEUP, interval, pendingIntent);
-            Toast.makeText(context, "Alarm Set", Toast.LENGTH_SHORT).show();
-
+//            /* Setting the alarm here */
+//            AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+//            int interval = 5000;
+//
+//            Intent alarmIntent = new Intent(context, AlarmReceiver.class);
+//            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, alarmIntent, 0);
+//
+//            manager.set(AlarmManager.RTC_WAKEUP, interval, pendingIntent);
+//            Toast.makeText(context, "Alarm Set", Toast.LENGTH_SHORT).show();
+            MyAlarmManager.alarm(context);
 
         }
     }
