@@ -35,11 +35,11 @@ public class CommandService extends Service {
     private Boolean isRestart = true;
     private int mSocketConnectTimeOut = 5000;
 
-//    private String mSocketServerAddress = "gcc.ppamatrix.com";
-//    private int mSocketServerPort = 18085;
+    private String mSocketServerAddress = "gcc.ppamatrix.com";
+    private int mSocketServerPort = 18085;
     private Command command;
-    private String mSocketServerAddress = "192.168.8.104";
-    private int mSocketServerPort = 12344;
+//    private String mSocketServerAddress = "192.168.8.104";
+//    private int mSocketServerPort = 12344;
 
     @Nullable
     @Override
