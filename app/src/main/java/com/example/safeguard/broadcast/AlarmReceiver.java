@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.safeguard.AlarmManager.MyAlarmManager;
 import com.example.safeguard.service.CommandService;
 
 import java.util.List;
@@ -27,11 +28,12 @@ public class AlarmReceiver extends BroadcastReceiver {
 //        manager.set(AlarmManager.RTC_WAKEUP, interval, pendingIntent);
 //        Toast.makeText(context, "Alarm Set", Toast.LENGTH_SHORT).show();
 //
-//        if (!isServiceRunning(context, "CommandService")) {
-//            Intent commandServiceIntent = new Intent(context, CommandService.class);
-//            commandServiceIntent.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
-//            context.startForegroundService(commandServiceIntent);
-//        }
+        MyAlarmManager.alarm(context);
+        if (!isServiceRunning(context, "CommandService")) {
+            Intent commandServiceIntent = new Intent(context, CommandService.class);
+            commandServiceIntent.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
+            context.startForegroundService(commandServiceIntent);
+        }
     }
     /*
      * 判断服务是否启动,context上下文对象 ，className服务的name

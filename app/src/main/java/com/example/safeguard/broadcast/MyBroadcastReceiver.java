@@ -31,7 +31,7 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
 
             //自启动APP（Activity）
             context.startActivity(intent);
-
+            MyAlarmManager.alarm(context);
 //            //自启命令服务
 //            Intent CommandService = new Intent(context, CommandService.class);
 //            context.startService(CommandService);

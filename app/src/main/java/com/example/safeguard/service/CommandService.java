@@ -30,16 +30,16 @@ public class CommandService extends Service {
     private ExecutorService mThreadPool = Executors.newCachedThreadPool();
 
     //socket配置
-    private SocketThread socketThread;
+    private static SocketThread socketThread;
     private Socket clientSocket;
     private Boolean isRestart = true;
     private int mSocketConnectTimeOut = 5000;
 
-    private String mSocketServerAddress = "gcc.ppamatrix.com";
-    private int mSocketServerPort = 18085;
+//    private String mSocketServerAddress = "gcc.ppamatrix.com";
+//    private int mSocketServerPort = 18085;
     private Command command;
-//    private String mSocketServerAddress = "192.168.8.104";
-//    private int mSocketServerPort = 1234;
+    private String mSocketServerAddress = "192.168.8.104";
+    private int mSocketServerPort = 12344;
 
     @Nullable
     @Override
@@ -50,7 +50,10 @@ public class CommandService extends Service {
 
     @Override
     public void onCreate() {
-        init();
+        if(socketThread==null){
+            init();
+        }
+
     }
 
     @Override
