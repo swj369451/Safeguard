@@ -68,7 +68,9 @@ public class Command {
                     }
                     Log.i(TAG, "Command: 接收消息" + message);
                 } catch (IOException e) {
+                    Log.e(TAG, "Command: 读取消息线程错误:"+e.getMessage());
                     e.printStackTrace();
+
                 }
             }
         });
@@ -89,6 +91,7 @@ public class Command {
                     }
                     Log.e(TAG, "Command: 接收错误消息" + message);
                 } catch (IOException e) {
+                    Log.e(TAG, "Command: 读取错误线程错误:"+e.getMessage());
                     e.printStackTrace();
                 }
             }

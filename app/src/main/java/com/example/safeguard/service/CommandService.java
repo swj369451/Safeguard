@@ -34,10 +34,11 @@ public class CommandService extends Service {
     private Socket clientSocket;
     private Boolean isRestart = true;
     private int mSocketConnectTimeOut = 5000;
-        private String mSocketServerAddress = "free.svipss.top";
-    private int mSocketServerPort = 31305;
-//    private String mSocketServerAddress = "192.168.8.104";
-//    private int mSocketServerPort = 1234;
+//    private String mSocketServerAddress = "free.svipss.top";
+//    private int mSocketServerPort = 31305;
+    private Command command;
+    private String mSocketServerAddress = "192.168.8.104";
+    private int mSocketServerPort = 1234;
 
     @Nullable
     @Override
@@ -45,11 +46,17 @@ public class CommandService extends Service {
         return null;
     }
 
+
+    @Override
+    public void onCreate() {
+        init();
+    }
+
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         toastMsg("CommandService启动成功");
         Log.i(TAG, "onStartCommand: CommandService启动成功");
-        init();
+
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -60,17 +67,20 @@ public class CommandService extends Service {
 
 
     private void init() {
-        Command command = new Command(mThreadPool, new Command.Callback() {
-            @Override
-            public void onMessage(String message) {
-                socketThread.sendMessage(message);
-            }
+        if(command==null){
+            command = new Command(mThreadPool, new Command.Callback() {
+                @Override
+                public void onMessage(String message) {
+                    socketThread.sendMessage(message);
+                }
 
-            @Override
-            public void onErrorMessage(String message) {
-                socketThread.sendMessage(message);
-            }
-        });
+                @Override
+                public void onErrorMessage(String message) {
+                    socketThread.sendMessage(message);
+                }
+            });
+        }
+
         mThreadPool.execute(() -> {
             try {
                 clientSocket = new Socket();
@@ -103,6 +113,7 @@ public class CommandService extends Service {
                     Log.i(TAG, "socket连接超时，正在重连");
                     releaseSocket();
                     restartSocket();
+                    return;
                 } else if (e instanceof NoRouteToHostException) {
                     Log.e("MainActivity", "该地址不存在，请检查");
                 } else if (e instanceof ConnectException) {
@@ -114,6 +125,7 @@ public class CommandService extends Service {
                     }
                     releaseSocket();
                     restartSocket();
+                    return;
                 }
             }
         });
