@@ -28,7 +28,7 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
             Log.e(TAG, "自重启");
             Toast.makeText(context, "自重启", Toast.LENGTH_SHORT).show();
             intent = new Intent(context, MainActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
             //自启动APP（Activity）
             context.startActivity(intent);
 
@@ -41,11 +41,11 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
 //            int interval = 5000;
 //
 //            Intent alarmIntent = new Intent(context, AlarmReceiver.class);
-//            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, alarmIntent, 0);
+//            PendingIntent pendingIntent = PendingInte.nt.getBroadcast(context, 0, alarmIntent, 0);
 //
 //            manager.set(AlarmManager.RTC_WAKEUP, interval, pendingIntent);
 //            Toast.makeText(context, "Alarm Set", Toast.LENGTH_SHORT).show();
-            MyAlarmManager.alarm(context);
+//            MyAlarmManager.alarm(context);
 
         }
     }

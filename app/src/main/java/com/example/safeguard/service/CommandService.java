@@ -34,11 +34,12 @@ public class CommandService extends Service {
     private Socket clientSocket;
     private Boolean isRestart = true;
     private int mSocketConnectTimeOut = 5000;
-//    private String mSocketServerAddress = "free.svipss.top";
-//    private int mSocketServerPort = 31305;
+
+    private String mSocketServerAddress = "gcc.ppamatrix.com";
+    private int mSocketServerPort = 18085;
     private Command command;
-    private String mSocketServerAddress = "192.168.8.104";
-    private int mSocketServerPort = 1234;
+//    private String mSocketServerAddress = "192.168.8.104";
+//    private int mSocketServerPort = 1234;
 
     @Nullable
     @Override

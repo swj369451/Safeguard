@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void init() {
-        //        MyAlarmManager.alarm(this);
+//                MyAlarmManager.alarm(this);
 
         Toast.makeText(this, "safeguard,成功启动了！", Toast.LENGTH_LONG).show();
         Log.e("MainActivity", "safeguard,成功启动了！");
